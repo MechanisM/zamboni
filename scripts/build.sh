@@ -48,6 +48,10 @@ echo "Updating vendor..."
 pushd $VENDOR && git pull && git submodule --quiet sync && git submodule update --init;
 popd
 
+# Update test-utils to the master for the faster test structure.
+pushd $VENDOR/src/test-utils && git checkout origin/master
+popd
+
 cat > settings_local.py <<SETTINGS
 from settings import *
 ROOT_URLCONF = '%s.urls' % ROOT_PACKAGE
